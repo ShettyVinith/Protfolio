@@ -1,7 +1,8 @@
+"use client";
 import Image from "next/image";
 import { assets, infoList, toolsData } from "@/assets/assets";
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const About = ({ isDarkMode }) => {
   return (
@@ -12,6 +13,7 @@ const About = ({ isDarkMode }) => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
+      {/* Section Headings */}
       <motion.h4
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -29,12 +31,14 @@ const About = ({ isDarkMode }) => {
         About me
       </motion.h2>
 
+      {/* Main Content */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
         className="flex w-full flex-col lg:flex-row items-center gap-20 my-20"
       >
+        {/* Profile Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -45,8 +49,10 @@ const About = ({ isDarkMode }) => {
             src={assets.user_image}
             alt="user"
             className="w-full rounded-3xl"
-          ></Image>
+          />
         </motion.div>
+
+        {/* About Description */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -57,9 +63,10 @@ const About = ({ isDarkMode }) => {
             I am an experienced Frontend Developer with over a decade of
             professional expertise in the field. Throughout my career, I have
             had the privilege of collaborating with prestigious organizations,
-            contributing to their success a their success and growth.
+            contributing to their success and growth.
           </p>
 
+          {/* Info Cards */}
           <motion.ul
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -87,6 +94,7 @@ const About = ({ isDarkMode }) => {
             ))}
           </motion.ul>
 
+          {/* Tools I Use */}
           <motion.h4
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -100,17 +108,20 @@ const About = ({ isDarkMode }) => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.6 }}
-            className="flex items-center gap-3 sm:gap-5"
+            className="flex items-center gap-3 sm:gap-5 flex-wrap"
           >
-            {toolsData.map((tool, index) => (
-              <motion.li
-                whileHover={{ scale: 1.1 }}
-                className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500"
-                key={index}
-              >
-                <Image src={tool} alt="Tool" className="w-5 sm:w-7" />
-              </motion.li>
-            ))}
+            {toolsData.map((tool, index) => {
+              const icon = tool.dark && isDarkMode ? tool.dark : tool.light;
+              return (
+                <motion.li
+                  whileHover={{ scale: 1.1 }}
+                  key={index}
+                  className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 dark:border-white"
+                >
+                  <Image src={icon} alt="Tool" className="w-5 sm:w-7" />
+                </motion.li>
+              );
+            })}
           </motion.ul>
         </motion.div>
       </motion.div>

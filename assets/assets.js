@@ -52,6 +52,7 @@ import cpp from "./cpp.png";
 import java from "./java.png";
 import python from "./python.png";
 import github from "./github.png";
+import github_dark from "./github-dark.png";
 
 export const assets = {
   user_image,
@@ -108,6 +109,7 @@ export const assets = {
   java,
   python,
   github,
+  github_dark,
 };
 
 export const skillsData = [
@@ -270,9 +272,9 @@ export const infoList = [
 ];
 
 export const toolsData = [
-  assets.vscode,
-  assets.github,
-  assets.git,
-  assets.figma,
-  assets.firebase,
+  { light: assets.vscode },
+  { light: assets.github, dark: assets.github_dark },
+  { light: assets.git },
+  { light: assets.figma },
+  { light: assets.firebase },
 ];
