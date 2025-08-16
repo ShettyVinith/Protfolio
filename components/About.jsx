@@ -60,10 +60,11 @@ const About = ({ isDarkMode }) => {
           className="flex-1"
         >
           <p className="mb-10 max-w-2xl font-Ovo">
-            I am an experienced Frontend Developer with over a decade of
-            professional expertise in the field. Throughout my career, I have
-            had the privilege of collaborating with prestigious organizations,
-            contributing to their success and growth.
+            I am Vinith Shetty, a passionate Full Stack Developer. I love
+            crafting modern, responsive, and scalable web applications that
+            solve real-world problems. With hands-on project experience, I focus
+            on writing clean, efficient code and building impactful digital
+            solutions while constantly learning and evolving as a developer.
           </p>
 
           {/* Info Cards */}
