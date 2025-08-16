@@ -54,7 +54,42 @@ import python from "./python.png";
 import github from "./github.png";
 import github_dark from "./github-dark.png";
 
+import html from "./html5.svg";
+import css from "./css.svg";
+import jss from "./jss.svg";
+import react1 from "./react1.svg";
+import reactbootstrap from "./reactbootstrap.svg";
+import express from "./express.svg";
+import mongodb1 from "./mongodb.svg";
+import mysql1 from "./mysql.svg";
+import postgresql from "./postgresql.svg";
+import java1 from "./icons8-java-logo-50.png";
+import git1 from "./git.svg";
+import c from "./c.svg";
+import bootstrap1 from "./icons8-bootstrap.svg";
+import python1 from "./icons8-python.svg";
+import figma1 from "./icons8-figma.svg";
+import php1 from "./icons8-php-24.png";
+import tailwindcss1 from "./icons8-tailwind-css.svg";
+
 export const assets = {
+  html,
+  css,
+  jss,
+  react1,
+  reactbootstrap,
+  express,
+  mongodb1,
+  mysql1,
+  postgresql,
+  java1,
+  git1,
+  c,
+  bootstrap1,
+  python1,
+  figma1,
+  php1,
+  tailwindcss1,
   user_image,
   code_icon,
   code_icon_dark,
@@ -112,6 +147,26 @@ export const assets = {
   github_dark,
 };
 
+export const skillsLogoData = [
+  { icon: assets.html, name: "HTML" },
+  { icon: assets.css, name: "CSS" },
+  { icon: assets.jss, name: "JavaScript" },
+  { icon: assets.react1, name: "React.js" },
+  { icon: assets.reactbootstrap, name: "React Bootstrap" },
+  { icon: assets.express, name: "Express.js" },
+  { icon: assets.mongodb1, name: "MongoDB" },
+  { icon: assets.mysql1, name: "MySQL" },
+  { icon: assets.postgresql, name: "PostgreSQL" },
+  { icon: assets.java1, name: "Java" },
+  { icon: assets.git1, name: "Git" },
+  { icon: assets.c, name: "C++" },
+  { icon: assets.bootstrap1, name: "Bootstrap" },
+  { icon: assets.python1, name: "Python" },
+  { icon: assets.figma1, name: "Figma" },
+  { icon: assets.php1, name: "PHP" },
+  { icon: assets.tailwindcss1, name: "Tailwind CSS" },
+];
+
 export const skillsData = [
   { icon: cpp, name: "C++" },
   { icon: java, name: "Java" },
@@ -129,61 +184,6 @@ export const skillsData = [
   { icon: mysql, name: "MySQL" },
   { icon: mongodb, name: "MongoDB" },
 ];
-
-// export const workData = [
-//   {
-//     title: "Frontend project",
-//     description: "Web Design",
-//     bgImage: "/work-1.png",
-//     details: [
-//       "Developed using React and Tailwind CSS",
-//       "Responsive layout for all screen sizes",
-//       "Used reusable components and clean code structure",
-//       "Integrated animations with Framer Motion",
-//     ],
-//     demo: "https://example-frontend-demo.com",
-//     github: "https://github.com/username/frontend-project",
-//   },
-//   {
-//     title: "Geo based app",
-//     description: "Mobile App",
-//     bgImage: "/work-2.png",
-//     details: [
-//       "Built with React Native and Expo",
-//       "Implemented location tracking and map integration",
-//       "Used Firebase for backend and authentication",
-//       "Offline-first functionality with local storage",
-//     ],
-//     demo: "https://example-geo-app.com",
-//     github: "https://github.com/username/geo-app",
-//   },
-//   {
-//     title: "Photography site",
-//     description: "Web Design",
-//     bgImage: "/work-3.png",
-//     details: [
-//       "Clean gallery layout with grid system",
-//       "High-res image optimization and lazy loading",
-//       "Built with Next.js and styled-components",
-//       "SEO optimized and fast loading",
-//     ],
-//     demo: "https://example-photography.com",
-//     github: "https://github.com/username/photography-site",
-//   },
-//   {
-//     title: "UI/UX designing",
-//     description: "UI/UX Design",
-//     bgImage: "/work-4.png",
-//     details: [
-//       "Designed in Figma with prototyping",
-//       "User research and wireframing",
-//       "Mobile-first design principles followed",
-//       "Delivered responsive mockups to dev team",
-//     ],
-//     demo: "https://example-uiux.com",
-//     github: "https://github.com/username/uiux-design",
-//   },
-// ];
 
 export const workData = [
   {

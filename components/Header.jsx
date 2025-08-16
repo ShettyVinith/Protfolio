@@ -2,10 +2,15 @@ import { assets } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
+import SkillLogos from "./SkillLogos"; // 👈 import
 
 const Header = () => {
   return (
-    <div className="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
+    <div className="relative w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
+      {/* Floating background skills */}
+      <SkillLogos />
+
+      {/* Profile image */}
       <motion.div
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
@@ -13,6 +18,8 @@ const Header = () => {
       >
         <Image src={assets.profile_img} alt="" className="rounded-full w-32" />
       </motion.div>
+
+      {/* Rest of your code */}
       <motion.h3
         initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -22,6 +29,7 @@ const Header = () => {
         Hi! I'm Vinith Shetty
         <Image src={assets.hand_icon} alt="" className="w-6" />
       </motion.h3>
+
       <motion.h1
         initial={{ y: -30, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -30,6 +38,7 @@ const Header = () => {
       >
         Full-Stack Developer based in Mangalore.
       </motion.h1>
+
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -40,6 +49,7 @@ const Header = () => {
         building web applications and digital experiences that make an impact.
       </motion.p>
 
+      {/* Buttons */}
       <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
         <motion.a
           initial={{ y: 30, opacity: 0 }}
