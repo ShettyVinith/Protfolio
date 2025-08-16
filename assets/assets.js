@@ -69,7 +69,7 @@ import c from "./c.svg";
 import bootstrap1 from "./icons8-bootstrap.svg";
 import python1 from "./icons8-python.svg";
 import figma1 from "./icons8-figma.svg";
-import php1 from "./icons8-php-24.png";
+import php1 from "./icons8-php.svg";
 import tailwindcss1 from "./icons8-tailwind-css.svg";
 
 export const assets = {
