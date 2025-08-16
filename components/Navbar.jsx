@@ -2,10 +2,12 @@
 import { assets } from "@/assets/assets";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
+import Lenis from "@studio-freight/lenis";
 
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isScroll, setisScroll] = useState(false);
   const sideMenuRef = useRef();
+  const lenisRef = useRef(null);
 
   const openMenu = () => {
     sideMenuRef.current.style.transform = "translateX(-16rem)";
@@ -16,21 +18,69 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (scrollY > 50) {
-        setisScroll(true);
-      } else {
-        setisScroll(false);
+    // ✅ Navbar background on scroll
+    const handleScroll = () => {
+      if (scrollY > 50) setisScroll(true);
+      else setisScroll(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    // ✅ Init Lenis once
+    if (!lenisRef.current) {
+      lenisRef.current = new Lenis({
+        duration: 1.2,
+        smoothWheel: true,
+        smoothTouch: false,
+        lerp: 0.1,
+        normalizeWheel: true,
+      });
+
+      function raf(time) {
+        lenisRef.current.raf(time);
+        requestAnimationFrame(raf);
       }
-    });
+      requestAnimationFrame(raf);
+    }
+
+    // ✅ Custom smooth scroll for anchor links
+    const links = document.querySelectorAll('a[href^="#"]');
+    const handleClick = (e) => {
+      const link = e.currentTarget || e.target.closest("a");
+      if (!link) return;
+
+      const href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        e.preventDefault();
+
+        if (href === "#top") {
+          lenisRef.current?.scrollTo(0);
+        } else {
+          const target = document.querySelector(href);
+          if (target) {
+            lenisRef.current?.scrollTo(target);
+          }
+        }
+
+        closeMenu();
+      }
+    };
+
+    links.forEach((link) => link.addEventListener("click", handleClick));
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      links.forEach((link) => link.removeEventListener("click", handleClick));
+    };
   }, []);
 
   return (
     <>
+      {/* Background image */}
       <div className="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
         <Image src={assets.header_bg_color} alt="" className="w-full" />
       </div>
 
+      {/* Navbar */}
       <nav
         className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${
           isScroll
@@ -42,7 +92,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         <a href="#top">
           <Image
             src={isDarkMode ? assets.logo_dark : assets.logo}
-            alt=""
+            alt="logo"
             className="w-28 cursor-pointer mr-14"
           />
         </a>
@@ -123,7 +173,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <button onClick={() => setIsDarkMode((prev) => !prev)}>
             <Image
               src={isDarkMode ? assets.sun_icon : assets.moon_icon}
-              alt=""
+              alt="dark mode toggle"
               className="w-6"
             />
           </button>
@@ -136,7 +186,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             Contact
             <Image
               src={isDarkMode ? assets.arrow_icon_dark : assets.arrow_icon}
-              alt=""
+              alt="arrow"
               className="w-3"
             />
           </a>
@@ -145,13 +195,13 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <button className="block md:hidden ml-3" onClick={openMenu}>
             <Image
               src={isDarkMode ? assets.menu_white : assets.menu_black}
-              alt=""
+              alt="menu"
               className="w-6"
             />
           </button>
         </div>
 
-        {/* -------- mobile menu -------- */}
+        {/* Mobile Menu */}
         <ul
           ref={sideMenuRef}
           className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white"
@@ -159,38 +209,38 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <div className="absolute top-6 right-6" onClick={closeMenu}>
             <Image
               src={isDarkMode ? assets.close_white : assets.close_black}
-              alt=""
+              alt="close"
               className="w-5 cursor-pointer"
             />
           </div>
 
           <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#top">
+            <a className="font-Ovo" href="#top">
               Home
             </a>
           </li>
           <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#about">
+            <a className="font-Ovo" href="#about">
               About me
             </a>
           </li>
           <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#skills">
+            <a className="font-Ovo" href="#skills">
               Skills
             </a>
           </li>
           <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#services">
+            <a className="font-Ovo" href="#services">
               Services
             </a>
           </li>
           <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#work">
+            <a className="font-Ovo" href="#work">
               My Work
             </a>
           </li>
           <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#contact">
+            <a className="font-Ovo" href="#contact">
               Contact me
             </a>
           </li>

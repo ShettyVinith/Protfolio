@@ -5,10 +5,20 @@ import { motion } from "framer-motion";
 import { assets } from "@/assets/assets";
 
 const ProjectCard = ({ isDarkMode, isOpen, onClose, project }) => {
-  // Lock background scroll
+  // 🔒 Lock background scroll when modal opens
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => (document.body.style.overflow = "");
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden"; // also lock <html>
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
   }, [isOpen]);
 
   if (!isOpen || !project) return null;
@@ -62,7 +72,10 @@ const ProjectCard = ({ isDarkMode, isOpen, onClose, project }) => {
           </button>
 
           {/* Scrollable content */}
-          <div className="modal-scroll flex-1 overflow-y-auto overscroll-contain p-8">
+          <div
+            className="modal-scroll flex-1 overflow-y-auto overscroll-contain p-8"
+            data-lenis-prevent // 🚫 tells Lenis NOT to hijack this container
+          >
             {/* Title */}
             <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white font-Ovo">
               {project.title}

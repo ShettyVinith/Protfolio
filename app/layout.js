@@ -1,6 +1,7 @@
 import { Outfit, Ovo } from "next/font/google";
 import "./globals.css";
 import Intro from "@/components/Intro";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -19,11 +20,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth ">
+    <html lang="en">
       <body
         className={`${outfit.className} ${ovo.className} antialiased leading-8 overflow-x-hidden dark:bg-darkTheme dark:text-white`}
       >
         {/* Intro always loads on refresh/open */}
+        <SmoothScroll />
         <Intro />
         {children}
       </body>
