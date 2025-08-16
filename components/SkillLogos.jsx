@@ -22,7 +22,7 @@ const SkillLogos = () => {
       icon: skillsLogoData[1].icon,
       name: "CSS3",
       pos: {
-        default: ["115%", "35%"],
+        default: ["110%", "35%"],
         sm: ["95%", "28%"],
         md: ["90%", "32%"],
         lg: ["85%", "35%"],
@@ -153,7 +153,7 @@ const SkillLogos = () => {
       icon: skillsLogoData[11].icon,
       name: "C++",
       pos: {
-        default: ["-38%", "80%"],
+        default: ["-20%", "80%"],
         sm: ["-28%", "75%"],
         md: ["-20%", "78%"],
         lg: ["-15%", "80%"],
@@ -165,10 +165,10 @@ const SkillLogos = () => {
       icon: skillsLogoData[12].icon,
       name: "Bootstrap",
       pos: {
-        default: ["125%", "85%"],
-        sm: ["110%", "80%"],
-        md: ["100%", "83%"],
-        lg: ["95%", "85%"],
+        default: ["30%", "20%"],
+        sm: ["50%", "20%"],
+        md: ["40%", "10%"],
+        lg: ["35%", "15%"],
       },
       delay: 11,
       duration: 14,
@@ -203,7 +203,7 @@ const SkillLogos = () => {
       icon: skillsLogoData[15].icon,
       name: "PHP",
       pos: {
-        default: ["105%", "65%"],
+        default: ["105%", "80%"],
         sm: ["95%", "62%"],
         md: ["90%", "64%"],
         lg: ["85%", "65%"],
@@ -216,7 +216,7 @@ const SkillLogos = () => {
       icon: skillsLogoData[16].icon,
       name: "Tailwind CSS",
       pos: {
-        default: ["130%", "10%"],
+        default: ["80%", "60%"],
         sm: ["110%", "8%"],
         md: ["100%", "10%"],
         lg: ["95%", "12%"],
