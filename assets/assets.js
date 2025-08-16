@@ -130,58 +130,133 @@ export const skillsData = [
   { icon: mongodb, name: "MongoDB" },
 ];
 
+// export const workData = [
+//   {
+//     title: "Frontend project",
+//     description: "Web Design",
+//     bgImage: "/work-1.png",
+//     details: [
+//       "Developed using React and Tailwind CSS",
+//       "Responsive layout for all screen sizes",
+//       "Used reusable components and clean code structure",
+//       "Integrated animations with Framer Motion",
+//     ],
+//     demo: "https://example-frontend-demo.com",
+//     github: "https://github.com/username/frontend-project",
+//   },
+//   {
+//     title: "Geo based app",
+//     description: "Mobile App",
+//     bgImage: "/work-2.png",
+//     details: [
+//       "Built with React Native and Expo",
+//       "Implemented location tracking and map integration",
+//       "Used Firebase for backend and authentication",
+//       "Offline-first functionality with local storage",
+//     ],
+//     demo: "https://example-geo-app.com",
+//     github: "https://github.com/username/geo-app",
+//   },
+//   {
+//     title: "Photography site",
+//     description: "Web Design",
+//     bgImage: "/work-3.png",
+//     details: [
+//       "Clean gallery layout with grid system",
+//       "High-res image optimization and lazy loading",
+//       "Built with Next.js and styled-components",
+//       "SEO optimized and fast loading",
+//     ],
+//     demo: "https://example-photography.com",
+//     github: "https://github.com/username/photography-site",
+//   },
+//   {
+//     title: "UI/UX designing",
+//     description: "UI/UX Design",
+//     bgImage: "/work-4.png",
+//     details: [
+//       "Designed in Figma with prototyping",
+//       "User research and wireframing",
+//       "Mobile-first design principles followed",
+//       "Delivered responsive mockups to dev team",
+//     ],
+//     demo: "https://example-uiux.com",
+//     github: "https://github.com/username/uiux-design",
+//   },
+// ];
+
 export const workData = [
   {
-    title: "Frontend project",
-    description: "Web Design",
+    title: "Sentiment Analysis Project",
     bgImage: "/work-1.png",
-    details: [
-      "Developed using React and Tailwind CSS",
-      "Responsive layout for all screen sizes",
-      "Used reusable components and clean code structure",
-      "Integrated animations with Framer Motion",
+    overview:
+      "A sophisticated sentiment analysis system that uses natural language processing to analyze and classify customer reviews and feedback into positive, negative, and neutral sentiments.",
+    features: [
+      "Real-time sentiment analysis of text inputs",
+      "Multi-language support with 95% accuracy",
+      "Emotion intensity scoring",
+      "Detailed sentiment breakdown and visualization",
+      "Batch processing capabilities",
     ],
-    demo: "https://example-frontend-demo.com",
-    github: "https://github.com/username/frontend-project",
+    technologies: ["Python", "NLTK", "Scikit-learn", "TensorFlow", "Flask"],
+    results:
+      "The project achieved 92% accuracy in sentiment classification, processing over 10,000 customer reviews per day. It helped businesses improve their customer service response time by 60% and increased satisfaction rates by 35%.",
+    demo: "https://example-sentiment-demo.com",
+    github: "https://github.com/username/sentiment-analysis",
   },
   {
-    title: "Geo based app",
-    description: "Mobile App",
+    title: "Customer segmen System",
     bgImage: "/work-2.png",
-    details: [
-      "Built with React Native and Expo",
-      "Implemented location tracking and map integration",
-      "Used Firebase for backend and authentication",
-      "Offline-first functionality with local storage",
+    overview:
+      "An ML-powered system that segments customers based on purchasing behavior and demographics, enabling targeted marketing strategies.",
+    features: [
+      "Automated clustering of customer data",
+      "Integration with CRM systems",
+      "Supports K-Means, DBSCAN, and Hierarchical models",
+      "Interactive dashboard for insights",
+      "Scalable for millions of records",
     ],
-    demo: "https://example-geo-app.com",
-    github: "https://github.com/username/geo-app",
+    technologies: ["Python", "Pandas", "Scikit-learn", "Matplotlib", "Flask"],
+    results:
+      "Enabled businesses to launch personalized campaigns, which improved conversion rates by 40% and boosted average order value by 25%.",
+    demo: "https://example-customer-demo.com",
+    github: "https://github.com/username/customer-segmentation",
   },
   {
-    title: "Photography site",
-    description: "Web Design",
+    title: "E-commerce Frontend",
     bgImage: "/work-3.png",
-    details: [
-      "Clean gallery layout with grid system",
-      "High-res image optimization and lazy loading",
-      "Built with Next.js and styled-components",
-      "SEO optimized and fast loading",
+    overview:
+      "A modern e-commerce website frontend designed with performance, responsiveness, and user experience in mind.",
+    features: [
+      "Built with reusable React and Next.js components",
+      "Optimized for Core Web Vitals",
+      "Integrated animations with Framer Motion",
+      "Dark mode and accessibility features",
+      "SEO optimized with Next.js",
     ],
-    demo: "https://example-photography.com",
-    github: "https://github.com/username/photography-site",
+    technologies: ["Next.js", "React", "Tailwind CSS", "Framer Motion"],
+    results:
+      "Improved load time by 45% and reduced bounce rate by 20%, leading to a 30% increase in conversions.",
+    demo: "https://example-ecommerce.com",
+    github: "https://github.com/username/ecommerce-frontend",
   },
   {
-    title: "UI/UX designing",
-    description: "UI/UX Design",
+    title: "Geo-based Mobile App",
     bgImage: "/work-4.png",
-    details: [
-      "Designed in Figma with prototyping",
-      "User research and wireframing",
-      "Mobile-first design principles followed",
-      "Delivered responsive mockups to dev team",
+    overview:
+      "A cross-platform mobile app that integrates location tracking and map-based features for real-time interaction.",
+    features: [
+      "Location tracking with Google Maps API",
+      "Offline-first with local storage support",
+      "Firebase authentication and real-time sync",
+      "Push notifications for nearby events",
+      "Responsive design for iOS & Android",
     ],
-    demo: "https://example-uiux.com",
-    github: "https://github.com/username/uiux-design",
+    technologies: ["React Native", "Expo", "Firebase", "Mapbox"],
+    results:
+      "Successfully deployed to 5,000+ users, achieving 4.6/5 average rating on app stores. Increased local business engagement by 50%.",
+    demo: "https://example-geo-app.com",
+    github: "https://github.com/username/geo-mobile-app",
   },
 ];
 

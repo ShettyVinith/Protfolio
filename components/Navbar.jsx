@@ -5,7 +5,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isScroll, setisScroll] = useState(false);
-
   const sideMenuRef = useRef();
 
   const openMenu = () => {
@@ -39,6 +38,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             : ""
         }`}
       >
+        {/* Logo */}
         <a href="#top">
           <Image
             src={isDarkMode ? assets.logo_dark : assets.logo}
@@ -47,6 +47,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           />
         </a>
 
+        {/* Desktop Menu */}
         <ul
           className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${
             isScroll
@@ -55,38 +56,70 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           }`}
         >
           <li>
-            <a href="#top" className="font-Ovo">
+            <a
+              href="#top"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
+              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
+              after:transition-all after:duration-300 hover:after:w-full"
+            >
               Home
             </a>
           </li>
           <li>
-            <a href="#about" className="font-Ovo">
+            <a
+              href="#about"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
+              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
+              after:transition-all after:duration-300 hover:after:w-full"
+            >
               About me
             </a>
           </li>
           <li>
-            <a href="#skills" className="font-Ovo">
+            <a
+              href="#skills"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
+              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
+              after:transition-all after:duration-300 hover:after:w-full"
+            >
               Skills
             </a>
           </li>
           <li>
-            <a href="#services" className="font-Ovo">
+            <a
+              href="#services"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
+              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
+              after:transition-all after:duration-300 hover:after:w-full"
+            >
               Services
             </a>
           </li>
           <li>
-            <a href="#work" className="font-Ovo">
+            <a
+              href="#work"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
+              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
+              after:transition-all after:duration-300 hover:after:w-full"
+            >
               My Work
             </a>
           </li>
           <li>
-            <a href="#contact" className="font-Ovo">
+            <a
+              href="#contact"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
+              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
+              after:transition-all after:duration-300 hover:after:w-full"
+            >
               Contact me
             </a>
           </li>
         </ul>
 
+        {/* Right Section */}
         <div className="flex items-center gap-4">
+          {/* Dark Mode Toggle */}
           <button onClick={() => setIsDarkMode((prev) => !prev)}>
             <Image
               src={isDarkMode ? assets.sun_icon : assets.moon_icon}
@@ -95,6 +128,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             />
           </button>
 
+          {/* Contact Button */}
           <a
             href="#contact"
             className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50"
@@ -107,6 +141,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             />
           </a>
 
+          {/* Mobile Menu Toggle */}
           <button className="block md:hidden ml-3" onClick={openMenu}>
             <Image
               src={isDarkMode ? assets.menu_white : assets.menu_black}
@@ -117,7 +152,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         </div>
 
         {/* -------- mobile menu -------- */}
-
         <ul
           ref={sideMenuRef}
           className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white"

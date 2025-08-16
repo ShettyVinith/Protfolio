@@ -1,15 +1,19 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { assets } from "@/assets/assets";
 
 const ServiceCard = ({ isOpen, onClose, service, isDarkMode }) => {
-  if (!service) return null;
+  // Prevent background scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => (document.body.style.overflow = "");
+  }, [isOpen]);
 
   return (
     <AnimatePresence mode="wait">
-      {isOpen && (
+      {isOpen && service && (
         <>
           {/* Overlay */}
           <motion.div
@@ -40,13 +44,19 @@ const ServiceCard = ({ isOpen, onClose, service, isDarkMode }) => {
               onClick={(e) => e.stopPropagation()}
               className="w-full max-w-xl bg-white dark:bg-darkTheme rounded-2xl shadow-lg p-8 pt-12 relative pointer-events-auto max-h-[90vh] overflow-y-auto"
             >
-              {/* Close Icon */}
-              <Image
-                src={isDarkMode ? assets.close_white : assets.close_black}
-                alt="close"
+              {/* Close Button */}
+              <button
                 onClick={onClose}
-                className="absolute top-6 right-6 w-4 cursor-pointer opacity-70 hover:opacity-100 transition"
-              />
+                className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center 
+                           rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 
+                           dark:hover:bg-gray-600 transition"
+              >
+                <Image
+                  src={isDarkMode ? assets.close_white : assets.close_black}
+                  alt="close"
+                  className="w-4 h-4"
+                />
+              </button>
 
               {/* Title */}
               <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white font-Ovo">

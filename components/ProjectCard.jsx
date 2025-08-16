@@ -1,112 +1,182 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { assets } from "@/assets/assets";
 
 const ProjectCard = ({ isDarkMode, isOpen, onClose, project }) => {
-  if (!project) return null;
+  // Lock background scroll
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => (document.body.style.overflow = "");
+  }, [isOpen]);
+
+  if (!isOpen || !project) return null;
 
   return (
-    <AnimatePresence mode="wait">
-      {isOpen && (
-        <>
-          {/* Overlay */}
-          <motion.div
-            key="overlay"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+    <>
+      {/* Overlay */}
+      <motion.div
+        key="overlay"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.4 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        onClick={onClose}
+        className="fixed inset-0 bg-black z-40"
+      />
+
+      {/* Modal wrapper */}
+      <motion.div
+        key="modal"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        className="fixed inset-0 z-50 flex items-center justify-center px-4 pointer-events-none"
+      >
+        {/* Card */}
+        <motion.div
+          key="card"
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={(e) => e.stopPropagation()}
+          className="w-full max-w-2xl bg-white dark:bg-darkTheme rounded-2xl shadow-lg relative pointer-events-auto
+                     max-h-[90vh] overflow-hidden flex flex-col"
+        >
+          {/* Close button */}
+          <button
             onClick={onClose}
-            className="fixed inset-0 bg-black z-40"
-          />
-
-          {/* Modal wrapper */}
-          <motion.div
-            key="modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center px-4 pointer-events-none"
+            className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center 
+                       rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 
+                       dark:hover:bg-gray-600 transition"
           >
-            <motion.div
-              key="card"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-2xl bg-white dark:bg-darkTheme rounded-2xl shadow-lg p-8 relative max-h-[90vh] overflow-y-auto pointer-events-auto"
-            >
-              {/* Image */}
-              <div className="w-full h-56 relative mb-6 rounded-xl overflow-hidden">
-                <Image
-                  src={project.bgImage}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <Image
+              src={isDarkMode ? assets.close_white : assets.close_black}
+              alt="close"
+              width={16}
+              height={16}
+            />
+          </button>
 
-              {/* Title */}
-              <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white font-Ovo">
-                {project.title}
-              </h2>
+          {/* Scrollable content */}
+          <div className="modal-scroll flex-1 overflow-y-auto overscroll-contain p-8">
+            {/* Title */}
+            <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white font-Ovo">
+              {project.title}
+            </h2>
 
-              {/* Description */}
-              <ul className="grid gap-3 text-md text-gray-700 dark:text-gray-300 mb-8 pl-4 list-disc">
-                {project.details?.map((point, idx) => (
-                  <li key={idx}>{point}</li>
-                ))}
-              </ul>
+            {/* Image */}
+            <div className="w-full h-56 relative mb-6 rounded-xl overflow-hidden flex items-center justify-center">
+              <Image
+                src={project.bgImage}
+                alt={project.title}
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+            </div>
 
-              {/* Buttons */}
-              <div className="flex flex-wrap gap-4 justify-center sm:justify-start">
-                {/* Live Demo */}
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group px-6 py-2.5 border border-gray-400 rounded-full hover:bg-lightHover dark:hover:bg-darkHover dark:border-white/50 flex items-center gap-2 text-md font-Ovo transition duration-300"
-                >
-                  Live Demo
-                  <Image
-                    src={
-                      isDarkMode
-                        ? assets.right_arrow_bold_dark
-                        : assets.right_arrow_bold
-                    }
-                    alt="arrow"
-                    className="w-4 group-hover:translate-x-1 transition-transform"
-                  />
-                </a>
+            {/* Sections */}
+            <div className="space-y-6 text-gray-700 dark:text-gray-300 font-Ovo">
+              {project.overview && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">
+                    Project Overview
+                  </h3>
+                  <p className="leading-relaxed">{project.overview}</p>
+                </div>
+              )}
 
-                {/* GitHub */}
-                <a
+              {project.features?.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">Key Features</h3>
+                  <ul className="list-disc pl-6 space-y-2">
+                    {project.features.map((feature, idx) => (
+                      <li key={idx}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {project.technologies?.length > 0 && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">
+                    Technologies Used
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1 rounded-full text-sm bg-pink-100 dark:bg-gray-800 
+                                   text-pink-600 dark:text-pink-400 font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {project.results && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-2">
+                    Results &amp; Impact
+                  </h3>
+                  <p className="leading-relaxed">{project.results}</p>
+                </div>
+              )}
+            </div>
+
+            {/* Footer buttons */}
+            <div className="flex flex-wrap gap-4 justify-center sm:justify-start mt-8">
+              {project.github && (
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group px-6 py-2.5 border border-gray-400 rounded-full hover:bg-lightHover dark:hover:bg-darkHover dark:border-white/50 flex items-center gap-2 text-md font-Ovo transition duration-300"
+                  className="py-2.5 px-6 w-max flex items-center justify-between gap-2 
+             bg-black/80 text-white rounded-full hover:bg-black 
+             duration-500 dark:bg-transparent dark:border dark:border-white/50 
+             dark:hover:bg-darkHover font-Ovo"
                 >
-                  Github
+                  View Code
                   <Image
-                    src={
-                      isDarkMode
-                        ? assets.right_arrow_bold_dark
-                        : assets.right_arrow_bold
-                    }
-                    alt="arrow"
-                    className="w-4 group-hover:translate-x-1 transition-transform"
+                    src={assets.right_arrow_white}
+                    alt=""
+                    className="w-4"
                   />
-                </a>
-              </div>
-            </motion.div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+                </motion.a>
+              )}
+              {project.demo && (
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-2.5 px-6 w-max flex items-center justify-between gap-2 
+             bg-black/80 text-white rounded-full hover:bg-black 
+             duration-500 dark:bg-transparent dark:border dark:border-white/50 
+             dark:hover:bg-darkHover font-Ovo"
+                >
+                  Live Demo
+                  <Image
+                    src={assets.right_arrow_white}
+                    alt=""
+                    className="w-4"
+                  />
+                </motion.a>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </>
   );
 };
 
