@@ -185,6 +185,7 @@ export const skillsData = [
   { icon: mongodb, name: "MongoDB" },
 ];
 
+// assets.js
 export const workData = [
   {
     title: "Chat + Video Calling App",
@@ -218,6 +219,7 @@ export const workData = [
       "Successfully deployed a full-fledged chat & video calling platform enabling seamless language exchange worldwide.",
     demo: "https://streamify-video-calling-realtime-chat-uw3x.onrender.com/",
     github: "https://github.com/ShettyVinith/Streamify",
+    categories: ["Web"], // 🟢 Added
   },
   {
     title: "Food Delivery Web App",
@@ -236,6 +238,7 @@ export const workData = [
       "Delivered a smooth food ordering experience with reusable components and optimized React performance.",
     demo: "https://tomato-fzei.onrender.com/",
     github: "https://github.com/ShettyVinith/Food-Delivery-Web-App",
+    categories: ["Web"], // 🟢 Added
   },
   {
     title: "Subscription Management System",
@@ -266,6 +269,7 @@ export const workData = [
       "Successfully built a scalable backend handling real subscription workflows securely with caching & abuse protection.",
     demo: "https://github.com/ShettyVinith/Subscription-Management-System",
     github: "https://github.com/ShettyVinith/Subscription-Management-System",
+    categories: ["Web"], // 🟢 Added
   },
   {
     title: "Sales Management System",
@@ -295,6 +299,18 @@ export const workData = [
       "Built a scalable enterprise-grade inventory and sales tracking system with clean MVC separation, PDF reports, and analytics.",
     demo: "https://github.com/ShettyVinith/Product-Management",
     github: "https://github.com/ShettyVinith/Product-Management",
+    categories: ["Java", "Web"], // 🟢 Multiple categories
+  },
+  {
+    title: "Machine Learning Project (Sample)", // 🟢 Dummy ML project for testing
+    bgImage: "/work-2.png",
+    overview: "A sample ML project for category testing.",
+    features: ["Feature extraction", "Classification model"],
+    technologies: ["Python", "Scikit-learn", "TensorFlow"],
+    results: "Demonstrated ML workflow with accuracy >90%.",
+    demo: "#",
+    github: "#",
+    categories: ["ML"], // 🟢 ML category
   },
 ];
 

@@ -60,8 +60,8 @@ const ProjectCard = ({ isDarkMode, isOpen, onClose, project }) => {
           <button
             onClick={onClose}
             className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center 
-                       rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 
-                       dark:hover:bg-gray-600 transition"
+             rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 
+             dark:hover:bg-gray-600 transition z-10"
           >
             <Image
               src={isDarkMode ? assets.close_white : assets.close_black}
@@ -74,7 +74,7 @@ const ProjectCard = ({ isDarkMode, isOpen, onClose, project }) => {
           {/* Scrollable content */}
           <div
             className="modal-scroll flex-1 overflow-y-auto overscroll-contain p-8"
-            data-lenis-prevent // 🚫 tells Lenis NOT to hijack this container
+            data-lenis-prevent
           >
             {/* Title */}
             <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white font-Ovo">
