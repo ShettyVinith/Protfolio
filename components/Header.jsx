@@ -42,7 +42,7 @@ const Header = () => {
           initial={{ x: -30, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden md:flex flex-col shrink-0 min-w-[64px]" // ✅ fixed width for consistent spacing
+          className="hidden md:flex flex-col shrink-0 min-w-[64px]"
         >
           <FloatingDock
             items={dockItems}
@@ -57,7 +57,6 @@ const Header = () => {
             initial={{ scale: 0 }}
             whileInView={{ scale: 1.1 }}
             transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
-            className="-ml-8"
           >
             <Image
               src={assets.profile_img}
@@ -70,7 +69,7 @@ const Header = () => {
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex items-end gap-2 text-2xl md:text-3xl mb-3 font-Ovo -ml-8"
+            className="flex items-end gap-2 text-2xl md:text-3xl mb-3 font-Ovo"
           >
             Hi! I'm Vinith Shetty
             <Image src={assets.hand_icon} alt="hand" className="w-6" />
