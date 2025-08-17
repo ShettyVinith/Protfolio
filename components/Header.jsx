@@ -35,27 +35,29 @@ const Header = () => {
       {/* Floating background skills */}
       <SkillLogos />
 
-      <div className="flex gap-2 items-center">
+      {/* Layout wrapper */}
+      <div className="flex items-center gap-8 w-full justify-center">
         {/* Floating Dock */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden md:flex flex-col"
+          className="hidden md:flex flex-col shrink-0 min-w-[64px]" // ✅ fixed width for consistent spacing
         >
           <FloatingDock
             items={dockItems}
-            desktopClassName="flex-col h-auto w-2 px-2 py-4 items-center gap-3 dark:bg-darkTheme/80"
+            desktopClassName="flex-col h-auto w-16 px-2 py-4 items-center gap-3 dark:bg-darkTheme/80"
             mobileClassName="flex-col"
           />
         </motion.div>
 
         {/* Main content */}
-        <div className="text-center flex flex-col items-center gap-4">
+        <div className="text-center flex flex-col items-center gap-4 flex-1">
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1.1 }}
             transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+            className="-ml-8"
           >
             <Image
               src={assets.profile_img}
@@ -68,7 +70,7 @@ const Header = () => {
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex items-end gap-2 text-2xl md:text-3xl mb-3 font-Ovo"
+            className="flex items-end gap-2 text-2xl md:text-3xl mb-3 font-Ovo -ml-8"
           >
             Hi! I'm Vinith Shetty
             <Image src={assets.hand_icon} alt="hand" className="w-6" />
