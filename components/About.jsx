@@ -13,24 +13,6 @@ const About = ({ isDarkMode }) => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {/* Section Headings */}
-      <motion.h4
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="text-center mb-2 text-lg font-Ovo"
-      >
-        Introduction
-      </motion.h4>
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="text-center text-5xl font-Ovo"
-      >
-        About me
-      </motion.h2>
-
       {/* Main Content */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -38,28 +20,47 @@ const About = ({ isDarkMode }) => {
         transition={{ duration: 0.8 }}
         className="flex w-full flex-col lg:flex-row items-center gap-20 my-20"
       >
-        {/* Profile Image */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="w-64 sm:w-80 rounded-3xl max-w-none"
-        >
-          <Image
-            src={assets.user_image}
-            alt="user"
-            className="w-full rounded-3xl"
-          />
-        </motion.div>
-
-        {/* About Description */}
+        {/* LEFT SIDE CONTENT (Introduction, About me, Description) */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex-1"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex-1 order-1 lg:order-2 flex flex-col"
         >
-          <p className="mb-10 max-w-2xl font-Ovo">
+          <motion.h4
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-3 text-lg font-Ovo text-center lg:text-left"
+          >
+            Introduction
+          </motion.h4>
+
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mb-12 lg:mb-4 text-5xl font-Ovo text-center lg:text-left"
+          >
+            About me
+          </motion.h2>
+
+          {/* IMAGE (comes after heading on mobile, side-by-side on desktop) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="w-64 sm:w-80 rounded-3xl max-w-none mx-auto mb-6 lg:hidden"
+          >
+            <Image
+              src={assets.user_image}
+              alt="user"
+              className="w-full rounded-3xl"
+            />
+          </motion.div>
+
+          {/* Description */}
+          <p className="mb-10 max-w-2xl font-Ovo text-left">
             I am Vinith Shetty, a passionate Full Stack Developer. I love
             crafting modern, responsive, and scalable web applications that
             solve real-world problems. With hands-on project experience, I focus
@@ -71,7 +72,7 @@ const About = ({ isDarkMode }) => {
           <motion.ul
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl font-sans"
           >
             {infoList.map(({ icon, iconDark, title, description }, index) => (
@@ -95,12 +96,12 @@ const About = ({ isDarkMode }) => {
             ))}
           </motion.ul>
 
-          {/* Tools I Use */}
+          {/* Tools */}
           <motion.h4
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.3, duration: 0.5 }}
-            className="my-6 text-gray-700 font-Ovo dark:text-white/80"
+            transition={{ delay: 0.9, duration: 0.5 }}
+            className="my-6 text-gray-700 font-Ovo text-center lg:text-left dark:text-white/80"
           >
             Tools I use
           </motion.h4>
@@ -108,8 +109,8 @@ const About = ({ isDarkMode }) => {
           <motion.ul
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.6 }}
-            className="flex items-center gap-3 sm:gap-5 flex-wrap"
+            transition={{ delay: 1.1, duration: 0.6 }}
+            className="flex items-center justify-center lg:justify-start gap-3 sm:gap-5 flex-wrap"
           >
             {toolsData.map((tool, index) => {
               const icon = tool.dark && isDarkMode ? tool.dark : tool.light;
@@ -124,6 +125,20 @@ const About = ({ isDarkMode }) => {
               );
             })}
           </motion.ul>
+        </motion.div>
+
+        {/* RIGHT SIDE IMAGE (only visible on desktop) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="w-64 sm:w-80 rounded-3xl max-w-none order-2 lg:order-1 hidden lg:block"
+        >
+          <Image
+            src={assets.user_image}
+            alt="user"
+            className="w-full rounded-3xl"
+          />
         </motion.div>
       </motion.div>
     </motion.div>

@@ -36,8 +36,9 @@ const Services = ({ onReadMore }) => {
         transition={{ delay: 0.7, duration: 0.5 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
       >
-        I am a frontend developer from California, USA with 10 years of
-        experience in multiple companies like Microsoft, Tesla and Apple.
+        I am a full-stack developer with professional experience as a
+        freelancer, where I have successfully designed and developed multiple
+        projects across different domains.
       </motion.p>
 
       <motion.div

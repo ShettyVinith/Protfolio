@@ -65,17 +65,16 @@ const Work = ({ isDarkMode }) => {
           projects showcasing my expertise in web, Java, and ML development.
         </motion.p>
 
-        {/* 🟢 Animated category filter tabs */}
         <div className="flex justify-center gap-4 mb-10 relative">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
               className={cn(
-                "relative px-6 py-3 rounded-full border transition text-base font-medium", // 🔥 bigger size
+                "relative px-6 py-3 rounded-full border transition text-base font-medium",
                 activeCategory === cat
                   ? "text-white dark:text-black"
-                  : "border-gray-400 text-gray-600 dark:text-gray-300 hover:bg-lightHover dark:hover:bg-darkHover"
+                  : "border-gray-400 text-black dark:text-gray-300 hover:bg-lightHover dark:hover:bg-darkHover"
               )}
             >
               {activeCategory === cat && (

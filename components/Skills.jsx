@@ -36,8 +36,8 @@ const Skills = () => {
         transition={{ delay: 0.7, duration: 0.5 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
       >
-        Technologies I use to build and scale beautiful, performant, and
-        responsive digital experiences.
+        Technologies that power my ability to craft scalable architectures,
+        optimize performance, and deliver seamless digital experiences.
       </motion.p>
 
       <motion.div
