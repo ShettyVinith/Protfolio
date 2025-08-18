@@ -83,7 +83,7 @@ const Header = () => {
 
           <motion.div
             initial={{ scale: 0 }}
-            whileInView={{ scale: 1.1 }}
+            whileInView={{ scale: 1 }}
             transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
           >
             <Image
