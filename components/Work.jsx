@@ -2,24 +2,31 @@
 
 import { assets, workData } from "@/assets/assets";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectCard from "./ProjectCard";
-import { cn } from "@/lib/utils"; // ✅ helper
+import { cn } from "@/lib/utils";
 
-const categories = ["All", "Web", "ML", "Java"]; // 🟢 Tabs
+const categories = ["All", "Web", "ML", "Java"];
 
 const Work = ({ isDarkMode }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isProjectOpen, setIsProjectOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("All"); // 🟢 Default
+  const [activeCategory, setActiveCategory] = useState("Web");
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
     setIsProjectOpen(true);
   };
 
-  // 🟢 Filter projects based on category
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % filteredProjects.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [activeIndex]);
+
   const filteredProjects =
     activeCategory === "All"
       ? workData
@@ -89,7 +96,6 @@ const Work = ({ isDarkMode }) => {
           ))}
         </div>
 
-        {/* Project cards */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -97,7 +103,7 @@ const Work = ({ isDarkMode }) => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 place-items-center my-10 dark:text-black"
         >
           <AnimatePresence mode="wait">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.title}
                 layout
@@ -110,30 +116,43 @@ const Work = ({ isDarkMode }) => {
                 className="w-[280px] h-[280px] sm:w-[250px] sm:h-[250px] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group"
                 style={{ backgroundImage: `url(${project.bgImage})` }}
               >
-                <div className="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                  <div>
-                    <h2 className="font-semibold">{project.title}</h2>
-                    <p className="text-sm text-gray-700">
+                <div className="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between gap-3 duration-500 group-hover:bottom-7">
+                  <div className="flex-1 min-w-0">
+                    <h2 className="font-semibold line-clamp-2">
+                      {project.title}
+                    </h2>
+
+                    <p className="text-sm text-gray-700 truncate">
                       {project.description}
                     </p>
                   </div>
 
-                  <div className="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                    <Image src={assets.send_icon} alt="" className="w-5" />
-                  </div>
+                  <motion.div
+                    animate={
+                      activeIndex === index
+                        ? { backgroundColor: ["#ffffff", "#bef264", "#ffffff"] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 2,
+                      ease: "easeInOut",
+                    }}
+                    whileHover={{ backgroundColor: "#bef264" }}
+                    className="shrink-0 w-9 h-9 border rounded-full border-black flex items-center justify-center shadow-[2px_2px_0_#000]"
+                  >
+                    <Image src={assets.send_icon} alt="send" className="w-5" />
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
 
-        {/* Show more button */}
-        {/* Show more button */}
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.5 }}
-          onClick={() => setActiveCategory("All")} // ✅ Reset category to All
+          onClick={() => setActiveCategory("All")}
           className="w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full px-10 py-3 mx-auto my-20 hover:bg-lightHover duration-500 dark:text-white dark:border-white dark:hover:bg-darkHover"
         >
           Show more
@@ -149,7 +168,6 @@ const Work = ({ isDarkMode }) => {
         </motion.button>
       </motion.div>
 
-      {/* Modal with AnimatePresence for smooth exit */}
       <AnimatePresence>
         {isProjectOpen && (
           <ProjectCard
