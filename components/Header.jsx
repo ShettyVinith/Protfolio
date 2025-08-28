@@ -32,7 +32,8 @@ const Header = () => {
   ];
 
   return (
-    <div className="relative w-11/12 max-w-5xl mx-auto h-screen flex items-center justify-center">
+    // FIX: Added responsive top padding (pt-24) to prevent overlap with the navbar on mobile screens.
+    <div className="relative w-11/12 max-w-5xl mx-auto h-screen flex items-center justify-center pt-24 md:pt-0">
       {/* Floating background skills */}
       <SkillLogos />
 

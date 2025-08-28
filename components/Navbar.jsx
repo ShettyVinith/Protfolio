@@ -2,7 +2,14 @@
 import { assets } from "@/assets/assets";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { IconHome2, IconBriefcase, IconId, IconMail, IconTools, IconSettings } from "@tabler/icons-react";
+import {
+  IconHome2,
+  IconBriefcase,
+  IconId,
+  IconMail,
+  IconTools,
+  IconSettings,
+} from "@tabler/icons-react";
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 
@@ -11,23 +18,17 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const lenisRef = useRef(null);
 
-  const openMenu = () => {
-    setIsMobileOpen(true);
-  };
-
   const closeMenu = () => {
     setIsMobileOpen(false);
   };
 
   useEffect(() => {
-    // ✅ Navbar background on scroll
     const handleScroll = () => {
       if (scrollY > 50) setisScroll(true);
       else setisScroll(false);
     };
     window.addEventListener("scroll", handleScroll);
 
-    // ✅ Init Lenis once
     if (!lenisRef.current) {
       lenisRef.current = new Lenis({
         duration: 1.2,
@@ -44,7 +45,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
       requestAnimationFrame(raf);
     }
 
-    // ✅ Custom smooth scroll for anchor links
     const links = document.querySelectorAll('a[href^="#"]');
     const handleClick = (e) => {
       const link = e.currentTarget || e.target.closest("a");
@@ -75,15 +75,11 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     };
   }, []);
 
-  // Animations for mobile dropdown cards
   const listVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.09,
-        delayChildren: 0.05,
-      },
+      transition: { staggerChildren: 0.09, delayChildren: 0.05 },
     },
   };
 
@@ -93,31 +89,25 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 360,
-        damping: 26,
-        mass: 0.8,
-      },
+      transition: { type: "spring", stiffness: 360, damping: 26, mass: 0.8 },
     },
   };
 
   return (
     <>
-      {/* Background image */}
       <div className="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
         <Image src={assets.header_bg_color} alt="" className="w-full" />
       </div>
 
-      {/* Navbar */}
-      <nav
-        className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${
-          isScroll
-            ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20 dark:bg-opacity-50 dark:backdrop-blur-lg"
-            : ""
-        }`}
-      >
-        {/* Logo */}
+      <nav className="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
+        <div
+          className={`absolute inset-0 -z-10 ${
+            isScroll || isMobileOpen
+              ? "bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20 dark:bg-opacity-50 dark:backdrop-blur-lg"
+              : ""
+          }`}
+        />
+
         <a href="#top">
           <Image
             src={isDarkMode ? assets.logo_dark : assets.logo}
@@ -126,7 +116,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           />
         </a>
 
-        {/* Desktop Menu */}
         <ul
           className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${
             isScroll
@@ -137,9 +126,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <li>
             <a
               href="#top"
-              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
-              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
-              after:transition-all after:duration-300 hover:after:w-full"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
             >
               Home
             </a>
@@ -147,9 +134,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <li>
             <a
               href="#about"
-              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
-              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
-              after:transition-all after:duration-300 hover:after:w-full"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
             >
               About me
             </a>
@@ -157,9 +142,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <li>
             <a
               href="#skills"
-              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
-              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
-              after:transition-all after:duration-300 hover:after:w-full"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
             >
               Skills
             </a>
@@ -167,9 +150,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <li>
             <a
               href="#services"
-              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
-              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
-              after:transition-all after:duration-300 hover:after:w-full"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
             >
               Services
             </a>
@@ -177,9 +158,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <li>
             <a
               href="#work"
-              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
-              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
-              after:transition-all after:duration-300 hover:after:w-full"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
             >
               My Work
             </a>
@@ -187,18 +166,14 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           <li>
             <a
               href="#contact"
-              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 
-              after:h-[2px] after:w-0 after:bg-black dark:after:bg-white 
-              after:transition-all after:duration-300 hover:after:w-full"
+              className="font-Ovo relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black dark:after:bg-white after:transition-all after:duration-300 hover:after:w-full"
             >
               Contact me
             </a>
           </li>
         </ul>
 
-        {/* Right Section */}
         <div className="flex items-center gap-4">
-          {/* Dark Mode Toggle */}
           <button onClick={() => setIsDarkMode((prev) => !prev)}>
             <Image
               src={isDarkMode ? assets.sun_icon : assets.moon_icon}
@@ -206,8 +181,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
               className="w-6"
             />
           </button>
-
-          {/* Contact Button */}
           <a
             href="#contact"
             className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50"
@@ -219,8 +192,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
               className="w-3"
             />
           </a>
-
-          {/* Mobile Menu Toggle - Animated Hamburger to Cross */}
           <button
             className="relative block md:hidden ml-3 w-9 h-9 text-black dark:text-white"
             onClick={() => setIsMobileOpen((prev) => !prev)}
@@ -244,13 +215,15 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             />
           </button>
         </div>
-        {/* Mobile Dropdown Menu (slides down) */}
+
+        {/* Mobile Dropdown Menu */}
+        {/* FIX: Removed opacity from the transition to make the background blur appear instantly. */}
         <div
-          className={`md:hidden absolute left-0 right-0 top-full px-5 lg:px-8 xl:px-[8%] pt-0 transition-[max-height,opacity] duration-300 ease-out overflow-hidden ${
-            isMobileOpen ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
+          className={`md:hidden absolute left-0 right-0 top-full px-5 lg:px-8 xl:px-[8%] pt-0 transition-[max-height] duration-300 ease-out overflow-hidden ${
+            isMobileOpen ? "max-h-[560px]" : "max-h-0"
           }`}
         >
-          <div className="rounded-b-3xl border border-gray-500/20 bg-white dark:bg-darkTheme dark:border-white/10 shadow-sm">
+          <div className="rounded-b-3xl border border-gray-500/20 bg-white/50 backdrop-blur-lg dark:bg-darkTheme/50 dark:border-white/10 shadow-sm">
             <motion.ul
               className="flex flex-col gap-3 p-4"
               variants={listVariants}
