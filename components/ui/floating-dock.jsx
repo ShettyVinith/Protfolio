@@ -30,12 +30,19 @@ export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
 const FloatingDockMobile = ({ items, className }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className={cn("relative block md:hidden", className)}>
+    <div
+      className={cn(
+        "fixed md:hidden z-50",
+        "right-[max(1rem,env(safe-area-inset-right))]",
+        "bottom-[max(1rem,env(safe-area-inset-bottom))]",
+        className
+      )}
+    >
       <AnimatePresence>
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute inset-x-0 bottom-full mb-2 flex flex-col gap-2"
+            className="absolute inset-x-0 bottom-full mb-3 flex flex-col gap-3"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -57,9 +64,9 @@ const FloatingDockMobile = ({ items, className }) => {
                 <a
                   href={item.href}
                   key={item.title}
-                  className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
+                  className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-md border border-black/10 dark:bg-neutral-900 dark:border-white/10"
                 >
-                  <div className="h-5 w-5">{item.icon}</div>
+                  <div className="h-6 w-6 text-black dark:text-white">{item.icon}</div>
                 </a>
               </motion.div>
             ))}
@@ -68,9 +75,9 @@ const FloatingDockMobile = ({ items, className }) => {
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-lg border border-black/10 dark:bg-neutral-800 dark:border-white/10"
       >
-        <IconLayoutNavbarCollapse className="h-6 w-6 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse className="h-7 w-7 text-neutral-600 dark:text-neutral-300" />
       </button>
     </div>
   );
@@ -83,7 +90,7 @@ const FloatingDockDesktop = ({ items, className }) => {
       onMouseMove={(e) => mouseY.set(e.pageY)}
       onMouseLeave={() => mouseY.set(Infinity)}
       className={cn(
-        "mx-auto hidden w-20 flex-col items-center gap-5 rounded-3xl bg-white py-6 md:flex dark:bg-darkTheme", // ✅ vertical - increased size
+        "mx-auto hidden w-20 flex-col items-center gap-5 rounded-3xl bg-white py-6 md:flex dark:bg-darkTheme",
         className
       )}
     >
