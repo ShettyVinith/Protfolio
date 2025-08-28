@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import { cn } from "@/lib/utils";
 
-const categories = ["All", "Web", "ML", "Java"];
+const categories = ["All", "Web", "AI/ML", "Java"];
 
 const Work = ({ isDarkMode }) => {
   const [selectedProject, setSelectedProject] = useState(null);

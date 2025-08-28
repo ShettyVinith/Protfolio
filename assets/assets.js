@@ -299,11 +299,11 @@ export const workData = [
       "Built a scalable enterprise-grade inventory and sales tracking system with clean MVC separation, PDF reports, and analytics.",
     demo: "https://github.com/ShettyVinith/Product-Management",
     github: "https://github.com/ShettyVinith/Product-Management",
-    categories: ["Java", "Web"], // 🟢 Multiple categories
+    categories: ["Java", "Web"], 
   },
   {
     title: "🌱 Crop Recommendation System",
-    bgImage: "/work-2.png",
+    bgImage: "/work-crop.png",
     overview: "A machine learning project that recommends the most suitable crop based on soil and environmental conditions.",
     features: [
       "Soil & climate data preprocessing",
@@ -315,8 +315,72 @@ export const workData = [
     results: "Achieved high accuracy. Random Forest and Gradient Boosting performed the best. Predicts crops like Rice, Maize, Mango, Coffee, etc.",
     demo: "https://github.com/ShettyVinith/Crop_Recommendation_System.git", // 🔹 Replace with Streamlit/Flask app link if deployed
     github: "https://github.com/ShettyVinith/Crop_Recommendation_System.git", 
-    categories: ["ML", "Agriculture", "Data Science"],
+    categories: ["AI/ML"],
+  },
+  {
+    title: "🤖 AI Resume Analyzer",
+    bgImage: "/work-ai-resume.png", 
+    overview:
+      "AI-powered Resume Analyzer built with React, React Router v7, and Puter.js. Upload resumes, match them to job listings, and get ATS scores with tailored feedback—all with a clean, reusable UI and no backend.",
+    features: [
+      "Browser-only auth with Puter.js",
+      "Resume upload & secure storage",
+      "AI ATS scoring & tailored feedback",
+      "Job-to-resume semantic matching",
+      "Reusable components & modern UI",
+      "Global state with Zustand",
+      "Routing with React Router v7"
+    ],
+    technologies: [
+      "React",
+      "React Router v7",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Zustand",
+      "Puter.js"
+    ],
+    results:
+      "End-to-end resume analysis with ATS score and feedback; responsive UI; no backend required.",
+    demo: "https://github.com/ShettyVinith/AI-Resume-Analyzer.git", 
+    github: "https://github.com/ShettyVinith/AI-Resume-Analyzer.git", 
+    categories: ["AI/ML",]
+  },
+{
+  title: "💻 AI Code Reviewer",
+  bgImage: "/work-ai-code.png",
+  overview: "AI-powered code reviewer using Google Gemini AI.",
+  features: [
+    "Automated feedback on performance, security, correctness",
+    "Full-stack with Node.js & React",
+    "Google Gemini AI integration"
+  ],
+  technologies: ["React", "Node.js", "Express", "Google Gemini AI"],
+  results: "Detailed code reviews generated instantly with AI.",
+  demo: "https://github.com/ShettyVinith/AI-Code-Reviewer/tree/main",
+  github: "https://github.com/ShettyVinith/AI-Code-Reviewer/tree/main",
+  categories: ["AI/ML"],
+},
+
+{
+  title: "🛒 Shopify E-commerce Platform",
+  bgImage: "/work-shopify.png",
+  overview:
+    "A full-stack e-commerce platform built with PHP, MySQL, HTML, and CSS, supporting product browsing, cart management, and admin inventory control.",
+  features: [
+    "User: Browse, add to cart, purchase products",
+    "Admin: Add, edit, delete products",
+    "Cart management with real-time updates",
+    "Database-driven inventory system"
+  ],
+  technologies: ["HTML", "CSS", "PHP", "MySQL"],
+  results: "Successfully implemented a functional online store with admin panel.",
+  demo: "https://github.com/ShettyVinith/Shopify-Ecommerce-Platform",
+  github: "https://github.com/ShettyVinith/Shopify-Ecommerce-Platform",
+  categories: ["Web"],
 }
+
 ];
 
 export const serviceData = [
