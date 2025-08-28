@@ -1,20 +1,21 @@
 "use client";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import { IconHome2, IconBriefcase, IconId, IconMail, IconTools, IconSettings } from "@tabler/icons-react";
 import React, { useEffect, useRef, useState } from "react";
 import Lenis from "@studio-freight/lenis";
 
 const Navbar = ({ isDarkMode, setIsDarkMode }) => {
   const [isScroll, setisScroll] = useState(false);
-  const sideMenuRef = useRef();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
   const lenisRef = useRef(null);
 
   const openMenu = () => {
-    sideMenuRef.current.style.transform = "translateX(-16rem)";
+    setIsMobileOpen(true);
   };
 
   const closeMenu = () => {
-    sideMenuRef.current.style.transform = "translateX(16rem)";
+    setIsMobileOpen(false);
   };
 
   useEffect(() => {
@@ -192,59 +193,98 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
           </a>
 
           {/* Mobile Menu Toggle */}
-          <button className="block md:hidden ml-3" onClick={openMenu}>
+          <button
+            className="block md:hidden ml-3"
+            onClick={() => setIsMobileOpen((prev) => !prev)}
+            aria-expanded={isMobileOpen}
+            aria-label="Toggle menu"
+          >
             <Image
-              src={isDarkMode ? assets.menu_white : assets.menu_black}
-              alt="menu"
+              src={
+                isMobileOpen
+                  ? isDarkMode
+                    ? assets.close_white
+                    : assets.close_black
+                  : isDarkMode
+                  ? assets.menu_white
+                  : assets.menu_black
+              }
+              alt="menu toggle"
               className="w-6"
             />
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <ul
-          ref={sideMenuRef}
-          className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white"
+        {/* Mobile Dropdown Menu (slides down) */}
+        <div
+          className={`md:hidden absolute left-0 right-0 top-full px-5 lg:px-8 xl:px-[8%] pt-0 transition-[max-height,opacity] duration-300 ease-out overflow-hidden ${
+            isMobileOpen ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
+          }`}
         >
-          <div className="absolute top-6 right-6" onClick={closeMenu}>
-            <Image
-              src={isDarkMode ? assets.close_white : assets.close_black}
-              alt="close"
-              className="w-5 cursor-pointer"
-            />
+          <div className="rounded-b-3xl border border-gray-500/20 bg-white dark:bg-darkTheme dark:border-white/10 shadow-sm">
+            <ul className="flex flex-col gap-3 p-4">
+              <li>
+                <a
+                  href="#top"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between rounded-2xl border border-gray-500/20 bg-white dark:bg-darkHover dark:border-white/10 px-5 py-4 font-Ovo shadow-sm text-lg"
+                >
+                  <span>Home</span>
+                  <IconHome2 size={26} className="opacity-80" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#about"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between rounded-2xl border border-gray-500/20 bg-white dark:bg-darkHover dark:border-white/10 px-5 py-4 font-Ovo shadow-sm text-lg"
+                >
+                  <span>About me</span>
+                  <IconId size={26} className="opacity-80" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#skills"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between rounded-2xl border border-gray-500/20 bg-white dark:bg-darkHover dark:border-white/10 px-5 py-4 font-Ovo shadow-sm text-lg"
+                >
+                  <span>Skills</span>
+                  <IconTools size={26} className="opacity-80" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between rounded-2xl border border-gray-500/20 bg-white dark:bg-darkHover dark:border-white/10 px-5 py-4 font-Ovo shadow-sm text-lg"
+                >
+                  <span>Services</span>
+                  <IconSettings size={26} className="opacity-80" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#work"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between rounded-2xl border border-gray-500/20 bg-white dark:bg-darkHover dark:border-white/10 px-5 py-4 font-Ovo shadow-sm text-lg"
+                >
+                  <span>My Work</span>
+                  <IconBriefcase size={26} className="opacity-80" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  onClick={closeMenu}
+                  className="flex items-center justify-between rounded-2xl border border-gray-500/20 bg-white dark:bg-darkHover dark:border-white/10 px-5 py-4 font-Ovo shadow-sm text-lg"
+                >
+                  <span>Contact me</span>
+                  <IconMail size={26} className="opacity-80" />
+                </a>
+              </li>
+            </ul>
           </div>
-
-          <li>
-            <a className="font-Ovo" href="#top">
-              Home
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" href="#about">
-              About me
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" href="#skills">
-              Skills
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" href="#services">
-              Services
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" href="#work">
-              My Work
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" href="#contact">
-              Contact me
-            </a>
-          </li>
-        </ul>
+        </div>
       </nav>
     </>
   );
