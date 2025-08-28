@@ -302,16 +302,21 @@ export const workData = [
     categories: ["Java", "Web"], // 🟢 Multiple categories
   },
   {
-    title: "Machine Learning Project (Sample)", // 🟢 Dummy ML project for testing
+    title: "🌱 Crop Recommendation System",
     bgImage: "/work-2.png",
-    overview: "A sample ML project for category testing.",
-    features: ["Feature extraction", "Classification model"],
-    technologies: ["Python", "Scikit-learn", "TensorFlow"],
-    results: "Demonstrated ML workflow with accuracy >90%.",
-    demo: "#",
-    github: "#",
-    categories: ["ML"], // 🟢 ML category
-  },
+    overview: "A machine learning project that recommends the most suitable crop based on soil and environmental conditions.",
+    features: [
+      "Soil & climate data preprocessing",
+      "Multiple ML models (Logistic Regression, Random Forest, SVM, etc.)",
+      "Model evaluation & comparison",
+      "Crop prediction with high accuracy"
+    ],
+    technologies: ["Python", "Pandas", "NumPy", "Scikit-learn", "Matplotlib", "Seaborn"],
+    results: "Achieved high accuracy. Random Forest and Gradient Boosting performed the best. Predicts crops like Rice, Maize, Mango, Coffee, etc.",
+    demo: "https://github.com/ShettyVinith/Crop_Recommendation_System.git", // 🔹 Replace with Streamlit/Flask app link if deployed
+    github: "https://github.com/ShettyVinith/Crop_Recommendation_System.git", 
+    categories: ["ML", "Agriculture", "Data Science"],
+}
 ];
 
 export const serviceData = [
