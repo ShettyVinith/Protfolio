@@ -2,7 +2,7 @@
 
 import { assets, workData } from "@/assets/assets";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import { cn } from "@/lib/utils";
@@ -13,19 +13,14 @@ const Work = ({ isDarkMode }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isProjectOpen, setIsProjectOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("Web");
-  const [activeIndex, setActiveIndex] = useState(0);
+  
 
   const handleProjectClick = (project) => {
     setSelectedProject(project);
     setIsProjectOpen(true);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % filteredProjects.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [activeIndex]);
+  
 
   const filteredProjects =
     activeCategory === "All"
@@ -128,17 +123,7 @@ const Work = ({ isDarkMode }) => {
                   </div>
 
                   <motion.div
-                    animate={
-                      activeIndex === index
-                        ? { backgroundColor: ["#ffffff", "#bef264", "#ffffff"] }
-                        : {}
-                    }
-                    transition={{
-                      duration: 2,
-                      ease: "easeInOut",
-                    }}
-                    whileHover={{ backgroundColor: "#bef264" }}
-                    className="shrink-0 w-9 h-9 border rounded-full border-black flex items-center justify-center shadow-[2px_2px_0_#000]"
+                    className="shrink-0 w-9 h-9 border rounded-full border-black flex items-center justify-center shadow-[2px_2px_0_#000] transition-colors duration-300 group-hover:bg-[#bef264]"
                   >
                     <Image src={assets.send_icon} alt="send" className="w-5" />
                   </motion.div>
