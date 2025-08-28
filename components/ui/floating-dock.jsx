@@ -57,9 +57,9 @@ const FloatingDockMobile = ({ items, className }) => {
                 <a
                   href={item.href}
                   key={item.title}
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
+                  className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
                 >
-                  <div className="h-4 w-4">{item.icon}</div>
+                  <div className="h-5 w-5">{item.icon}</div>
                 </a>
               </motion.div>
             ))}
@@ -68,9 +68,9 @@ const FloatingDockMobile = ({ items, className }) => {
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
       >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse className="h-6 w-6 text-neutral-500 dark:text-neutral-400" />
       </button>
     </div>
   );
@@ -83,7 +83,7 @@ const FloatingDockDesktop = ({ items, className }) => {
       onMouseMove={(e) => mouseY.set(e.pageY)}
       onMouseLeave={() => mouseY.set(Infinity)}
       className={cn(
-        "mx-auto hidden w-16 flex-col items-center gap-4 rounded-2xl bg-white py-4 md:flex dark:bg-darkTheme", // ✅ vertical
+        "mx-auto hidden w-20 flex-col items-center gap-5 rounded-3xl bg-white py-6 md:flex dark:bg-darkTheme", // ✅ vertical - increased size
         className
       )}
     >
@@ -102,12 +102,12 @@ function IconContainer({ mouseY, title, icon, href }) {
     return val - bounds.y - bounds.height / 2; // ✅ vertical distance
   });
 
-  // Bubble scaling
-  let widthTransform = useTransform(distance, [-150, 0, 150], [50, 90, 50]); // 👈 base size bigger
-  let heightTransform = useTransform(distance, [-150, 0, 150], [50, 90, 50]); // 👈 base size bigger
+  // Bubble scaling - increased base sizes
+  let widthTransform = useTransform(distance, [-150, 0, 150], [60, 110, 60]); // 👈 increased base size
+  let heightTransform = useTransform(distance, [-150, 0, 150], [60, 110, 60]); // 👈 increased base size
 
-  // Icon scaling (default bigger + grows with bubble)
-  let scaleTransform = useTransform(distance, [-150, 0, 150], [1.2, 2, 1.2]); // 👈 default 1.2x instead of 1
+  // Icon scaling (default bigger + grows with bubble) - increased scaling
+  let scaleTransform = useTransform(distance, [-150, 0, 150], [1.4, 2.4, 1.4]); // 👈 increased default and max scaling
   let scale = useSpring(scaleTransform, {
     mass: 0.1,
     stiffness: 150,

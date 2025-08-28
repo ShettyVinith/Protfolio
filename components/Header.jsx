@@ -8,6 +8,7 @@ import { FloatingDock } from "./ui/floating-dock";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
+  IconBrandX,
   IconMail,
 } from "@tabler/icons-react";
 
@@ -15,17 +16,17 @@ const Header = () => {
   const dockItems = [
     {
       title: "GitHub",
-      icon: <IconBrandGithub className="w-5 h-5" />,
+      icon: <IconBrandGithub className="w-6 h-6" />,
       href: "https://github.com/ShettyVinith",
     },
     {
       title: "LinkedIn",
-      icon: <IconBrandLinkedin className="w-5 h-5" />,
+      icon: <IconBrandLinkedin className="w-6 h-6" />,
       href: "https://www.linkedin.com/in/shettyvinith/",
     },
     {
       title: "Email",
-      icon: <IconMail className="w-5 h-5" />,
+      icon: <IconMail className="w-6 h-6" />,
       href: "mailto:vinithshetty9372@gmail.com",
     },
   ];
@@ -62,7 +63,7 @@ const Header = () => {
               <a
                 key={item.title}
                 href={item.href}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 dark:bg-darkHover hover:scale-110 transition-transform"
+                className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-darkHover hover:scale-110 transition-transform"
                 target={item.href.startsWith("http") ? "_blank" : undefined}
                 rel={
                   item.href.startsWith("http")
@@ -74,7 +75,7 @@ const Header = () => {
                 {/* Bigger icons on mobile */}
                 <div className="flex items-center justify-center text-neutral-700 dark:text-neutral-200">
                   {React.cloneElement(item.icon, {
-                    className: "h-6 w-6 md:h-6 md:w-6",
+                    className: "h-7 w-7 md:h-7 md:w-7",
                   })}
                 </div>
               </a>
@@ -108,7 +109,7 @@ const Header = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo"
           >
-            Full-Stack Developer based in Udupi.
+            Full-Stack Developer based in Mangalore.
           </motion.h1>
           {/* Description */}
           <motion.p
